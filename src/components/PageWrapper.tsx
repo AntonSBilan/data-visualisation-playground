@@ -21,6 +21,7 @@ import Head from 'next/head';
 import {mainMenu} from '@/utils/menu';
 import Link from 'next/link';
 import {usePathname} from 'next/navigation';
+import {getSideMenuState, setSideMenuState} from '@/utils/localStorage';
 
 const drawerWidth = 240;
 
@@ -135,7 +136,17 @@ const AppBar = styled(MuiAppBar, {
 export default function PageWrapper(props: React.PropsWithChildren) {
   const children = props.children;
   const pathname = usePathname();
-  const [isMenuOpened, setMenuOpened] = useState(true);
+  const [isMenuOpened, setMenuOpened] = useState(!!getSideMenuState());
+
+  const openMenu = () => {
+    setMenuOpened(true);
+    setSideMenuState(true);
+  };
+
+  const closeMenu = () => {
+    setMenuOpened(false);
+    setSideMenuState(false);
+  };
 
   return <>
     <Head>
@@ -154,7 +165,7 @@ export default function PageWrapper(props: React.PropsWithChildren) {
               color="inherit"
               aria-label="menu"
               sx={{ mr: 2 }}
-              onClick={() => setMenuOpened(!isMenuOpened)}
+              onClick={openMenu}
             >
               <MenuIcon />
             </IconButton>}
@@ -165,7 +176,7 @@ export default function PageWrapper(props: React.PropsWithChildren) {
         </AppBar>
         <Drawer variant="permanent" open={isMenuOpened}>
           <DrawerHeader>
-            <IconButton onClick={() => setMenuOpened(false)}>
+            <IconButton onClick={closeMenu}>
               <ChevronLeftIcon />
             </IconButton>
           </DrawerHeader>
