@@ -5,5 +5,5 @@ export const getSideMenuState = (): boolean | null => {
 };
 
 export const setSideMenuState = (state: boolean) => {
-  localStorage.setItem('side_menu', state?.toString());
+  localStorage?.setItem('side_menu', state?.toString());
 };
