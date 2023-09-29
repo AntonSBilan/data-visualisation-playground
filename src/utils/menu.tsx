@@ -1,4 +1,4 @@
-import {Layers as LayersIcon, DonutLarge as DonutLargeIcon} from '@mui/icons-material';
+import {Layers as LayersIcon, DonutLarge as DonutLargeIcon, AutoGraph as AutoGraphIcon} from '@mui/icons-material';
 import React from 'react';
 
 export const mainMenu = [{
@@ -9,4 +9,8 @@ export const mainMenu = [{
   href: '/libraries',
   name: 'Libraries',
   icon: <LayersIcon color="primary" />
+}, {
+  href: '/visualisation',
+  name: 'Visualisation',
+  icon: <AutoGraphIcon color="primary" />
 }];

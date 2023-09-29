@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
   AppBar as MuiAppBar,
   Divider,
@@ -136,7 +136,11 @@ const AppBar = styled(MuiAppBar, {
 export default function PageWrapper(props: React.PropsWithChildren) {
   const children = props.children;
   const pathname = usePathname();
-  const [isMenuOpened, setMenuOpened] = useState(!!getSideMenuState());
+  const [isMenuOpened, setMenuOpened] = useState(true);
+
+  useEffect(() => {
+    setMenuOpened(!!getSideMenuState());
+  }, []);
 
   const openMenu = () => {
     setMenuOpened(true);
@@ -169,7 +173,10 @@ export default function PageWrapper(props: React.PropsWithChildren) {
             >
               <MenuIcon />
             </IconButton>}
-            <Typography variant="h6" align="center" component="div" sx={{ flexGrow: 1 }}>
+            <Typography
+              variant="h6"
+              align="center"
+              component="div" sx={{ flexGrow: 1 }}>
               Data Visualisation Playground
             </Typography>
           </Toolbar>

@@ -7,7 +7,7 @@ export const getSideMenuState = (): boolean | null => {
   return state === 'true' ? true : state === 'false' ? false : null;
 };
 
-export const setSideMenuState = (state: boolean) => {
+export const setSideMenuState =   (state: boolean) => {
   if (typeof window === 'undefined') {
     return;
   }
