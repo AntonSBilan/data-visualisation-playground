@@ -10,7 +10,10 @@ import {getDefaultCode} from '@/utils/visualisation';
 
 export function CodeView(props: {
   onSubmit: (code: string, library: LibraryEnum) => Promise<void>,
+  splitView?: () => unknown;
+  closeView?: () => unknown;
 }) {
+  const {splitView, closeView} = props;
   const [editorRef, setEditorRef] = useState<IStandaloneCodeEditor | null>(null);
   const [selectedLibrary, setSelectedLibrary] = useState<LibraryEnum>(supportedLibraries[0].type);
   const [availableVisualisations, setAvailableVisualisations] = useState<typeof supportedLibraries[number]['visualisations']>(supportedLibraries[0].visualisations);
@@ -59,11 +62,25 @@ export function CodeView(props: {
       <div className={styles.editorButtons}>
         <Select defaultIndexValue={defaultLibraryListIndex} name="library" label="Library" list={supportedLibraries} onSelect={onLibraryChange}/>
         <Select defaultIndexValue={defaultVisualisationListIndex} name="visualisation" label="Visualisation" list={availableVisualisations} onSelect={onVisualisationChange}/>
-        <Button onClick={() => updateVis()}
-          style={{marginLeft: 'auto'}}
-          color="success"
-          variant="contained"
-          size="small">UPDATE</Button>
+        <div style={{marginLeft: 'auto'}}>
+          {splitView ? <Button onClick={() => splitView()}
+            style={{marginLeft: 'auto'}}
+            color="inherit"
+            variant="contained"
+            size="small">SPLIT VIEW</Button>
+            : closeView && <Button onClick={() => closeView()}
+              style={{marginLeft: 'auto'}}
+              color="inherit"
+              variant="contained"
+              size="small">CLOSE VIEW
+            </Button>
+          }
+          <Button onClick={() => updateVis()}
+            style={{marginLeft: '10px'}}
+            color="success"
+            variant="contained"
+            size="small">UPDATE</Button>
+        </div>
       </div>
       <Editor
         className={styles.editor}

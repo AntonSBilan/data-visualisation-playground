@@ -2,7 +2,7 @@ export const apexchartsLineChart = `
 
 var options = {
   chart: {
-    height: 350,
+    height: window.innerHeight - 100,
     type: "line",
     stacked: false
   },

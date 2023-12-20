@@ -2,7 +2,7 @@ export const echartsLineChart = `
 // Initialize the echarts instance based on the prepared dom
 const el = document.createElement('div');
 el.setAttribute('id', 'main');
-el.setAttribute('style', 'width: 600px;height:400px;');
+el.setAttribute('style', 'width: 90vw;height:90vh;');
 document.body.append(el);
 const myChart = echarts.init(document.getElementById('main'));
 

@@ -1,26 +1,28 @@
-import React, {useRef} from 'react';
-import {CodeView} from '@/components/CodeView';
-import axios from 'axios';
-import styles from '@/styles/main.module.css';
-import {LibraryEnum} from '@/types';
+import React, {Fragment, useState} from 'react';
+import Divider from '@mui/material/Divider';
+import Visualisation from '@/components/Visualisation';
 
 
-export default function Visualisation() {
-  const uuid = useRef<string>();
-  const library = useRef<LibraryEnum>();
-  const onCodeSubmit = async (code: string, selectedLibrary: LibraryEnum) => {
-    const res = await axios.post(`/api/iframe?codeUuid=${uuid?.current}`, { code });
-    uuid.current = res.data.codeUuid;
-    library.current = selectedLibrary;
-    if (document?.getElementById('iframe')) {
-      (document.getElementById('iframe') as HTMLIFrameElement).src = `/api/iframe?codeUuid=${res.data?.codeUuid}&library=${library.current}`;
-    }
+export default function Visualisations() {
+  const [openedViews, setOpenedViews] = useState<number[]>([1]);
+
+  const closeViewFn = (id: number) => () => {
+    setOpenedViews(openedViews.filter(i => i !== id));
   };
 
-  return <div className={styles.sandboxWrapper} style={{width: '100%', height: '100%', display: 'flex', justifyContent: 'space-between'}}>
-    <div style={{height: '40%'}}>
-      <iframe id="iframe" style={{maxHeight: '100%', border: 0}} width="100%" height="100%" src={`/api/iframe?codeUuid=${uuid?.current}&library=${library.current}`}></iframe>
-    </div>
-    <CodeView onSubmit={onCodeSubmit}/>
-  </div>;
+  const openViewFn = () => () => {
+    setOpenedViews([...openedViews, Math.max(...openedViews) + 1]);
+  };
+
+  return openedViews.map((id, i, arr) => {
+    return <Fragment key={`${id}`}>
+      {i != 0 && <Divider style={{margin: '0 10px'}} orientation="vertical" variant="fullWidth" />}
+      <Visualisation
+        id={id}
+        numberOfViews={arr.length}
+        closeView={arr.length > 1 ? closeViewFn(id) : undefined}
+        splitView={arr.length > 1 ? undefined : openViewFn()}
+      />
+    </Fragment>;
+  });
 }

@@ -16,7 +16,7 @@ const chart = new frappe.Chart("body", {  // or a DOM element,
     title: "My Awesome Chart",
     data: data,
     type: 'pie',
-    height: 250,
+    height: window.innerHeight - 100,
     colors: ['#7cd6fd', '#743ee2']
 })
 `;

@@ -220,7 +220,7 @@ export default function PageWrapper(props: React.PropsWithChildren) {
             ))}
           </List>
         </Drawer>
-        <Container maxWidth={false} open={isMenuOpened}>
+        <Container style={{display: 'flex', flexDirection: 'row'}} maxWidth={false} open={isMenuOpened}>
           {children}
         </Container>
       </div>

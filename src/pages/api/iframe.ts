@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import {v4} from 'uuid';
 import {LibraryEnum} from '@/types';
 
-const storage: Record<string, string> = {};
+let storage: Record<string, string> = {};
 const libraries: {[k in LibraryEnum]: {script: string[], style: string[]}} = {
   [LibraryEnum.D3]: {
     style: [],
@@ -53,8 +53,8 @@ export default function handler(
   if (req.method === 'GET') {
     const code = storage[req.query?.codeUuid as string];
     const library = libraries[req.query?.library as LibraryEnum];
-    if (code) {
-      delete storage[req.query.codeUuid as string];
+    if (code && Object.keys(storage).length > 1000) {
+      storage = {};
     }
     res.setHeader('content-type', 'text/html');
     res.status(200);
