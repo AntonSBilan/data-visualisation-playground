@@ -1,24 +1,17 @@
 export const chartJsPieChart = `
+var data = [{"name":"<5","value":19912018},{"name":"5-9","value":20501982},{"name":"10-14","value":20679786},{"name":"15-19","value":21354481},{"name":"20-24","value":22604232},{"name":"25-29","value":21698010},{"name":"30-34","value":21183639},{"name":"35-39","value":19855782},{"name":"40-44","value":20796128},{"name":"45-49","value":21370368},{"name":"50-54","value":22525490},{"name":"55-59","value":21001947},{"name":"60-64","value":18415681},{"name":"65-69","value":14547446},{"name":"70-74","value":10587721},{"name":"75-79","value":7730129},{"name":"80-84","value":5811429},{"name":"≥85","value":5938752}];
+
 const canvas = document.createElement('canvas');
 canvas.setAttribute('id', 'canvas');
 document.body.append(canvas);
 
 const ctx = document.getElementById('canvas');
 
-const data = {
-  labels: [
-    'Red',
-    'Blue',
-    'Yellow'
-  ],
+data = {
+  labels: data.map(d => d.name),
   datasets: [{
-    label: 'My First Dataset',
-    data: [300, 50, 100],
-    backgroundColor: [
-      'rgb(255, 99, 132)',
-      'rgb(54, 162, 235)',
-      'rgb(255, 205, 86)'
-    ],
+    label: 'Peaple by Age',
+    data: data.map(d => d.value),
     hoverOffset: 4
   }]
 };
@@ -27,5 +20,4 @@ new Chart(ctx, {
   type: 'pie',
   data: data,
 });
-
 `;

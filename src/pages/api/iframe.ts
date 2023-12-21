@@ -10,7 +10,11 @@ const libraries: {[k in LibraryEnum]: {script: string[], style: string[]}} = {
   },
   [LibraryEnum.CHART_JS]: {
     style: [],
-    script: ['https://cdn.jsdelivr.net/npm/chart.js']
+    script: [
+      'https://cdn.jsdelivr.net/npm/chart.js',
+      'https://cdn.jsdelivr.net/npm/moment@^2',
+      'https://cdn.jsdelivr.net/npm/chartjs-adapter-moment@^1',
+    ]
   },
   [LibraryEnum.VEGA_LITE]: {
     style: [],
