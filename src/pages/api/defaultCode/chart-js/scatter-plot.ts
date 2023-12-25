@@ -19,6 +19,12 @@ new Chart(ctx, {
   type: 'scatter',
   data: data,
   options: {
+  plugins: {
+      tooltip: {
+          enabled: false,
+      }
+    },
+    animation: false,
     scales: {
       x: {
         type: 'linear',

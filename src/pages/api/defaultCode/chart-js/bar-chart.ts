@@ -7,17 +7,23 @@ document.body.append(canvas);
 
 const ctx = document.getElementById('canvas');
 
-new Chart(ctx, {
+const chart = new Chart(ctx, {
   type: 'bar',
   data: {
     labels: data.sort((a, b) => b.frequency - a.frequency).map(d => d.letter),
     datasets: [{
-      label: 'Usage freaquency',
-      data: data.sort((a, b) => b.frequency - a.frequency).map(d => +(d.frequency * 100).toFixed(2)),
-      borderWidth: 1
+        label: 'Usage freaquency',
+        data: data.sort((a, b) => b.frequency - a.frequency).map(d => +(d.frequency * 100).toFixed(2)),
+        borderWidth: 1
     }]
   },
   options: {
+    plugins: {
+        tooltip: {
+            enabled: false,
+        }
+    },
+    animation: false,
     scales: {
       y: {
         beginAtZero: true

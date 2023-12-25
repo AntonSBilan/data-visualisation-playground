@@ -11,6 +11,10 @@ const myChart = echarts.init(document.getElementById('main'));
 const option = {
   xAxis: {},
   yAxis: {},
+  animation: false,
+  tooltip: {
+    trigger: 'none'
+  },
   series: [
     {
       symbolSize: 7,

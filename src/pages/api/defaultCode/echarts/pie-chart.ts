@@ -14,8 +14,9 @@ const option = {
     subtext: 'Fake Data',
     left: 'center'
   },
+  animation: false,
   tooltip: {
-    trigger: 'item'
+    trigger: 'none'
   },
   legend: {
     orient: 'vertical',

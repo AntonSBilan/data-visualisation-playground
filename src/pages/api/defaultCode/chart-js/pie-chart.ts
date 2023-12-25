@@ -8,16 +8,24 @@ document.body.append(canvas);
 const ctx = document.getElementById('canvas');
 
 data = {
-  labels: data.map(d => d.name),
-  datasets: [{
-    label: 'Peaple by Age',
-    data: data.map(d => d.value),
-    hoverOffset: 4
-  }]
+    labels: data.map(d => d.name),
+    datasets: [{
+        label: 'Peaple by Age',
+        data: data.map(d => d.value),
+        hoverOffset: 4
+    }]
 };
 
 new Chart(ctx, {
-  type: 'pie',
-  data: data,
+    type: 'pie',
+    data: data,
+    options: {
+        plugins: {
+            tooltip: {
+                enabled: false,
+            }
+        },
+        animation: false,
+    }
 });
 `;

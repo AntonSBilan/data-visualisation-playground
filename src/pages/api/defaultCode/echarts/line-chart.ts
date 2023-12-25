@@ -16,6 +16,10 @@ const option = {
   yAxis: {
     type: 'value'
   },
+  animation: false,
+  tooltip: {
+    trigger: 'none'
+  },
   series: [
     {
       data: data.map(d => d.close),

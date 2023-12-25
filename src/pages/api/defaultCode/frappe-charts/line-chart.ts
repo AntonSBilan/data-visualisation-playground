@@ -16,6 +16,7 @@ const chart = new frappe.Chart("body", {  // or a DOM element,
     title: "Stocks",
     data: data,
     type: 'line',
+    animate: false,
     axisOptions: {
       xIsSeries: 1,  
     },

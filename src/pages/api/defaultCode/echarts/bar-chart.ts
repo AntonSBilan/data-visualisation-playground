@@ -13,7 +13,10 @@ var option = {
   title: {
     text: 'Letters Frequency'
   },
-  tooltip: {},
+  animation: false,
+  tooltip: {
+    trigger: 'none'
+  },
   legend: {
     data: ['frequency %']
   },
