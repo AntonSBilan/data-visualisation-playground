@@ -32,7 +32,7 @@ export default function Libraries() {
       </Grid>
       <Grid item xs={4}>
         <div>
-          <Typography>Supported Types of Visualization</Typography>
+          <Typography>Supported Types of Visualisation</Typography>
           <Slider
             aria-label="Types"
             defaultValue={0}
@@ -114,7 +114,7 @@ export default function Libraries() {
     {librariesInformation
       .filter(l => {
         const customisationRank = l.rankings.find(r => r.name === 'Customization Level')?.rank ?? 0;
-        const typesRank = l.rankings.find(r => r.name === 'Supported Types of Visualization')?.rank ?? 0;
+        const typesRank = l.rankings.find(r => r.name === 'Supported Types of Visualisation')?.rank ?? 0;
         const popularityRank = l.rankings.find(r => r.name === 'Popularity')?.rank ?? 0;
         const easeRank = l.rankings.find(r => r.name === 'Ease of Use')?.rank ?? 0;
         const animationRank = l.rankings.find(r => r.name === 'Support of Animation')?.rank ?? 0;
